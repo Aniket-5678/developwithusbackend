@@ -8,12 +8,16 @@ import connectionDB from "./db/db.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import portfolioRoutes from "./routes/portfolioRoutes.js";
 import path from "path";
+import fs from "fs";  
 dotenv.config();
 
 connectionDB()
 
 const app = express();
-
+// 🔥 ADD THIS BLOCK (VERY IMPORTANT)
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
 // 🔹 Middleware
 app.use(cors());
 app.use(express.json());
